@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
@@ -18,7 +17,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use phpDocumentor\Reflection\Types\Collection;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -58,9 +56,9 @@ class AdminPanelProvider extends PanelProvider
     protected function buildNavigation(): array
     {
         return collect(range(1, 30))
-            ->map(fn() => fake()->colorName)
-            ->map(fn($label, $i) => NavigationItem::make($label)
-                ->group('Group ' . ($i % 4 + 1))
+            ->map(fn () => fake()->colorName)
+            ->map(fn ($label, $i) => NavigationItem::make($label)
+                ->group('Group '.($i % 4 + 1))
                 ->url('#'))
             ->toArray();
     }
